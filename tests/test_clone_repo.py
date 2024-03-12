@@ -14,7 +14,7 @@ def test_clone_all_git_repo():
     checkpoints = load_checkpoints(output_dir.parent)
     for pecha_id in all_pecha_ids:
         destination_folder = output_dir / pecha_id
-        if destination_folder.exists() and list(destination_folder.rglob("*")):
+        if destination_folder.exists():
             assert pecha_id in checkpoints
         else:
             assert pecha_id not in checkpoints

@@ -97,6 +97,6 @@ def clone_all_git_repo(all_pecha_ids: List[str], output_dir: Path):
 
 
 if __name__ == "__main__":
-    all_pecha_ids = List(Path("../../pecha_files.txt").read_text().splitlines())
+    all_pecha_ids = list(Path("../../pecha_files.txt").read_text().splitlines())
     output_dir = Path("../../pecha_data")
     clone_all_git_repo(all_pecha_ids, output_dir)

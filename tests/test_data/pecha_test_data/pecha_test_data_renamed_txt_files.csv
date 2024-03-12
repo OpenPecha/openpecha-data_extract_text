@@ -1,0 +1,5 @@
+Old Filename,New Filename
+tests/test_data/pecha_test_data/pecha/IBBC1CC03/IBBC1CC03.opf/base/EB2E.txt,tests/test_data/pecha_test_data/pecha/IBBC1CC03/IBBC1CC03.opf/base/IBBC1CC03_EB2E.txt
+tests/test_data/pecha_test_data/pecha/OF8BFB0BC/OF8BFB0BC.opf/base/D977.txt,tests/test_data/pecha_test_data/pecha/OF8BFB0BC/OF8BFB0BC.opf/base/OF8BFB0BC_D977.txt
+tests/test_data/pecha_test_data/pecha/I548FEE84/I548FEE84.opf/base/05CB.txt,tests/test_data/pecha_test_data/pecha/I548FEE84/I548FEE84.opf/base/I548FEE84_05CB.txt
+tests/test_data/pecha_test_data/pecha/O4AECF99F/O4AECF99F.opf/base/642B.txt,tests/test_data/pecha_test_data/pecha/O4AECF99F/O4AECF99F.opf/base/O4AECF99F_642B.txt

@@ -7,11 +7,14 @@
 
 <!-- Replace with 1-sentence description about what this tool is or does.-->
 
-<h3 align="center">Use this repo template for all new Python projects.</h3>
+<h3 align="center">openpecha_data_extract_text</h3>
 
 ## Description
-
-Project description goes here.
+1. In this work, we all cloning the pecha_id in the list of pecha repo in OpenPecha-Data orgnization Github.
+2. after cloning the repo, we are rename all the text files within each pecha repo.
+3. then we are copying the text files in our output folder.
+Flow Diagram:
+![alt text](flow_chart.png)
 
 ## Project owner(s)
 

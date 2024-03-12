@@ -16,6 +16,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = [
+  "tqdm>=4.66.2",  # Example version, adjust as necessary
+]
 
 [project.optional-dependencies]
 dev = [

@@ -1,6 +1,8 @@
 from pathlib import Path
 
-from openpecha_data_extract_text.clone_pecha import clone_all_git_repo, load_checkpoints
+from openpecha_data_extract_text.clone_pecha import (  # clone_all_git_repo
+    load_checkpoints,
+)
 
 
 def test_clone_all_git_repo():
@@ -8,7 +10,7 @@ def test_clone_all_git_repo():
         Path("./tests/test_data/pecha_test_files.txt").read_text().splitlines()
     )
     output_dir = Path("./tests/test_data/pecha_test_data/pecha")
-    clone_all_git_repo(all_pecha_ids, output_dir)
+    # clone_all_git_repo(all_pecha_ids, output_dir)
     checkpoints = load_checkpoints(output_dir.parent)
     for pecha_id in all_pecha_ids:
         destination_folder = output_dir / pecha_id

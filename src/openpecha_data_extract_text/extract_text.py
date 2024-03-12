@@ -27,6 +27,6 @@ def copy_all_files(folder_dir: Path, destination_folder: Path):
 
 
 if __name__ == "__main__":
-    folder_dir = Path("../../pecha_data")
-    destination_folder = Path("../../pecha_data_txt")
+    folder_dir = Path("../../data/pecha_data")
+    destination_folder = Path("../../data/pecha_data_txt")
     copy_all_files(folder_dir, destination_folder)

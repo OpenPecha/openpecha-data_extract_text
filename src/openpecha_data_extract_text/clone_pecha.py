@@ -6,31 +6,30 @@ from typing import List
 
 from tqdm import tqdm
 
-PECHA_CORRUPTED_FILES = Path("../../pecha_corrupted_files.txt")
-if not PECHA_CORRUPTED_FILES.exists():
-    PECHA_CORRUPTED_FILES.touch()
 
-
-def save_corrupted_pecha(file_path: str):
-    with open(PECHA_CORRUPTED_FILES, "a") as f:
+def save_corrupted_pecha(file_path: str, output_dir: Path):
+    corrupted_file_path = output_dir / "pecha_progress" / "pecha_corrupted_files.txt"
+    corrupted_file_path.parent.mkdir(
+        parents=True, exist_ok=True
+    )  # Ensure directory exists
+    with open(corrupted_file_path, "a") as f:
         f.write(f"{file_path}\n")
 
 
-"""check point system"""
+def load_checkpoints(output_dir: Path):
+    pecha_checkpoint = output_dir / "pecha_progress" / "pecha_checkpoint.txt"
+    # Ensure the parent directory exists before touching the file
 
-PECHA_CLONED_CHECKPOINT = Path("../../pecha_checkpoint.txt")
+    if pecha_checkpoint.exists():
+        return pecha_checkpoint.read_text().splitlines()
 
-
-def load_checkpoints():
-    if PECHA_CLONED_CHECKPOINT.exists():
-        return PECHA_CLONED_CHECKPOINT.read_text().splitlines()
-
-    PECHA_CLONED_CHECKPOINT.touch()
     return []
 
 
-def save_checkpoint(file_checkpoint: str):
-    with open(PECHA_CLONED_CHECKPOINT, "a") as f:
+def save_checkpoint(file_checkpoint: str, output_dir: Path):
+    checkpoint_file = output_dir / "pecha_progress" / "pecha_checkpoint.txt"
+    checkpoint_file.parent.mkdir(parents=True, exist_ok=True)  # Ensure directory exists
+    with open(checkpoint_file, "a") as f:
         f.write(f"{file_checkpoint}\n")
 
 
@@ -65,23 +64,25 @@ def clone_github_repo(repo_name: str, destination_folder: Path):
         print(
             f"[SUCCESS]: Repository {repo_name} cloned successfully to {destination_folder}."
         )
-        save_checkpoint(str(repo_name))
+        save_checkpoint(str(repo_name), destination_folder.parent.parent)
 
     except subprocess.CalledProcessError as e:
         error_message = e.stderr  # Capture the standard error output
         print(f"[ERROR]: Error cloning {repo_name} repository: {error_message}")
-        save_corrupted_pecha(f"{repo_name}-{error_message}")
+        save_corrupted_pecha(
+            f"{repo_name}-{error_message}", destination_folder.parent.parent
+        )
 
 
 def worker_task(args):
     pecha_id, output_dir, checkpoints = args
     if f"{str(pecha_id)}" in checkpoints:
         return
-    clone_github_repo(pecha_id, output_dir)
+    clone_github_repo(pecha_id, destination_folder=output_dir)
 
 
 def clone_all_git_repo(all_pecha_ids: List[str], output_dir: Path):
-    checkpoints = load_checkpoints()
+    checkpoints = load_checkpoints(output_dir.parent)
     tasks = [
         (pecha_id, Path(f"{output_dir}/{pecha_id}"), checkpoints)
         for pecha_id in all_pecha_ids
@@ -97,6 +98,6 @@ def clone_all_git_repo(all_pecha_ids: List[str], output_dir: Path):
 
 
 if __name__ == "__main__":
-    all_pecha_ids = list(Path("../../pecha_files.txt").read_text().splitlines())
-    output_dir = Path("../../pecha_data")
+    all_pecha_ids = list(Path("../../data/pecha_files.txt").read_text().splitlines())
+    output_dir = Path("../../data/pecha_data")
     clone_all_git_repo(all_pecha_ids, output_dir)

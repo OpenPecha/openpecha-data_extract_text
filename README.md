@@ -7,7 +7,7 @@
 
 <!-- Replace with 1-sentence description about what this tool is or does.-->
 
-<h3 align="center">Use this repo template for all new Python projects.</h3>
+<h3 align="center">openpecha_data_extract_text</h3>
 
 ## Description
 

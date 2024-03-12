@@ -14,7 +14,7 @@
 2. after cloning the repo, we are rename all the text files within each pecha repo.
 3. then we are copying the text files in our output folder.
 Flow Diagram:
-![alt text](flow_chart.png)
+![alt text](./data/flow_chart.png)
 
 ## Project owner(s)
 
